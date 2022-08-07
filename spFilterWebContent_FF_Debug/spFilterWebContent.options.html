@@ -1,0 +1,1058 @@
+﻿<!-- START OF $Id: spFilterWebContent.options.html,v 1.46 2022/07/30 06:35:43 user Exp $ -->
+
+<html>
+
+<head>
+   <title>spFilterWebContent Options</title>
+   <link rel="stylesheet" href="spFilterWebContent.options.css">
+</head>
+
+<body>
+  <span id="sp_Table_of_Contents">
+  <h1>Table of contents</h1>
+  
+  <ul>
+    <li>
+      <a href="#H1_option_secure_urls">secure URLs</a>
+    <li>
+      <a href="#H1_option_block_requests">blocking web requests</a>
+      <ul>
+	<li>
+	  <a href="#H2_option_block_MAIN_FRAME">MAIN_FRAME</a><b> / </b>
+	  <a href="#H2_option_block_SUB_FRAME">SUB_FRAME</a>
+	</li>
+	<li>  
+	  <a href="#H2_option_block_FONT">FONT</a> <b> / </b>
+	  <a href="#H2_option_block_IMAGE">IMAGE</a><b> / </b>
+	  <a href="#H2_option_block_IMAGESET">IMAGESET</a><b> / </b>
+	  <a href="#H2_option_block_MEDIA">MEDIA</a><b> / </b>
+	  <a href="#H2_option_block_SCRIPT">SCRIPT</a><b> / </b>
+	  <a href="#H2_option_block_STYLESHEET">STYLESHEET</a><b> / </b>
+	  <a href="#H2_option_block_XMLHTTPREQUEST">XMLHTTPREQUEST</a>
+	</li>
+	<li>
+	  <a href="#H2_option_block_BEACON">BEACON</a><b> / </b>
+	  <a href="#H2_option_block_CSP_REPORT">CSP_REPORT</a><b> / </b>
+	  <a href="#H2_option_block_OBJECT">OBJECT</a><b> / </b>
+	  <a href="#H2_option_block_OBJECT_SUBREQUEST">OBJECT_SUBREQUEST</a><b> / </b>
+	  <a href="#H2_option_block_PING">PING</a><b> / </b>
+	  <a href="#H2_option_block_WEB_MANIFEST">WEB_MANIFEST</a><b> / </b>
+	  <a href="#H2_option_block_WEBSOCKET">WEBSOCKET</a><b> / </b>
+	  <a href="#H2_option_block_XBL">XBL</a><b> / </b>
+	  <a href="#H2_option_block_XML_DTD">XML_DTD</a><b> / </b>
+	  <a href="#H2_option_block_XSLT">XSLT</a><b> / </b>
+	  <a href="#H2_option_block_OTHER">OTHER</a>
+	</li>
+      </ul>
+    </li>
+    <li>
+      <a href="#H1_option_RequestHeaders_block">blocking request headers</a>
+      <ul>
+	<li>
+	  <a href="#H2_option_RequestHeaders_block_Referer">Referer</a><b> / </b>
+	  <a href="#H2_option_RequestHeaders_block_Cookies">Cookies</a>
+	</li>
+      </ul>
+    </li>
+    <li>
+      <a href="#H1_option_RequestHeaders_change">changing request headers</a>
+      <ul>
+	<li>
+	  <a href="#H2_option_RequestHeaders_change_UserAgent">User Agent</a>
+	</li>
+      </ul>
+    </li>
+    <li>
+      <a href="#H1_option_ResponseHeaders_block">blocking response headers</a>
+      <ul>
+	<li>
+	  <a href="#H2_option_ResponseHeaders_block_Cookies">Cookies</a>
+	</li>
+      </ul>
+    </li>
+    <li>
+      <a href="#H1_option_ResponseHeaders_change">changing response headers</a>
+      <ul>
+	<li>
+	  <a href="#H2_option_ResponseHeaders_change_CSP">Content-Security-Policy</a>
+	</li>
+      </ul>
+    </li>
+    <li>
+      <a href="#H1_Option_redirect">redirecting HTTP requests</a>
+    </li>
+    <li>
+      <a href="#H1_option_display_information">displaying information</a>
+      <ul>
+	<li>
+	  <a href="#H2_option_display_information_requests">web requests</a><b> / </b>
+	  <a href="#H2_option_display_information_internal_requests">internal requests</a><b> / </b>
+	  <a href="#H2_option_display_information_formdata">form data</a><b> / </b>
+	  <a href="#H2_option_display_information_headers">headers</a><b> / </b>
+	  <a href="#H2_option_display_information_textformat">text formatting</a>
+	</li>
+      </ul>
+    </li>
+    <li>
+      <a href="#H1_general_information">General information</a>
+    </li>
+  </ul>
+  </span>
+  
+  <hr>
+
+  <span id="sp_Security_Status">
+  </span>
+
+  <hr>
+  
+  <span id="sp_Doku">
+    <h1>Documentation</h1>
+  </span>
+  
+  <p>
+    This extension uses the Web-Request-API.<br>
+    <span id="Special_Notes_for_Firefox">
+      <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest" target="_blank">
+	https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest
+      </a>
+    </span>
+    <span id="Special_Notes_for_Chrome">
+      <a href="https://developer.chrome.com/extensions/webRequest" target="_blank">
+	https://developer.chrome.com/extensions/webRequest
+      </a>
+    </span>
+  </p>
+  <p>
+    A description of the types of web requests can be found here:<br>
+    <span id="Special_Notes_for_Firefox">
+      <a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/webRequest/ResourceType" target="_blank">
+	https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/webRequest/ResourceType
+      </a>
+    </span>
+    <span id="Special_Notes_for_Chrome">
+      <a href="https://developer.chrome.com/extensions/webRequest#type-ResourceType" target="_blank">
+	https://developer.chrome.com/extensions/webRequest
+      </a>
+    </span>
+  </p>
+  
+  <p>
+    Processing (changing / blocking) of web requests and headers is done in the following way:
+  </p>
+  
+  <p><b>Event "browser.webRequest.onBeforeRequest"</b></p>
+  <ul>
+    <li>
+      <p><b>HTTP redirect</b></p>
+      <p>
+	Settings in section <a href="#H1_Option_redirect">redirecting HTTP requests</a><br>
+	In case of a match the requested URL is changed and a HTTP redirect is performed.
+      </p>
+    </li>
+    <li>
+      <p><b>blocking / allowing</b></p>
+      <p>
+	If the URL is secure the web request is allowed. Otherwise:<br>
+	Settings in section <a href="#H1_option_block_requests">blocking web requests</a> in the following order
+	<ol>
+	  <li>
+	    Option "allowed based on type"
+	  </li>
+	  <li>
+	    Option "blocked based on type"
+	  </li>
+	  <li>
+	    Option "FONT blocked based on name"
+	  </li>
+	  <li>
+	    Option "allowed for all types"
+	  </li>
+	  <li>
+	    Option "blocked for all types"
+	  </li>
+	  <li>
+	    If none of the options above matched : the request is allowed
+	  </li>
+	</ol>
+      </p>
+    </li>
+  </ul>
+  
+  <p><b>Event "browser.webRequest.OnBeforeSendHeaders"</b></p>
+  
+  <ul>
+    <li>
+      <p><b>Referer</b></p>
+      If the URL is secure the referer is allowed. Otherwise:<br>
+      
+      Settings in section <a href="#H1_option_RequestHeaders_block">blocking request headers</a> -- <a href="#H2_option_RequestHeaders_block_Referer">Referer</a>
+      <ol>
+	<li> allow Referer </li>
+	<li> block Referer </li>
+	<li> If none of the options above matched : Referer is allowed </li>
+      </ol>
+    </li>
+    <li>
+      <p><b>Cookies</b></p>
+      If the URL is secure Cookies are allowed. Otherwise:<br>
+      Settings in section <a href="#H1_option_RequestHeaders_block">blocking request headers</a> -- <a href="#H2_option_RequestHeaders_block_Cookies">Cookies</a>
+      <ol>
+	<li> allow Cookies </li>
+	<li> block Cookies </li>
+	<li> If none of the options above matched : Cookies are allowed </li>
+      </ol>
+    </li>
+    <li>
+      <p><b>User Agent</b></p>
+      Settings in section <a href="#H1_option_RequestHeaders_change">changing request headers</a> -- <a href="#H2_option_RequestHeaders_change_UserAgent">User Agent</a><br>
+      The user agent is changed based on the rules found in the section "User Agent".
+      If no rule applies User Agent is not changed.
+    </li>
+  </ul>
+
+  <p><b>Event "browser.webRequest.onHeadersReceived"</b></p>
+  <ul>
+    <li>
+      <p><b>Cookies</b></p>
+      If the URL is secure Cookies are allowed. Otherwise:<br>
+      Settings in section <a href="#H1_option_ResponseHeaders_block">blocking response headers</a> -- <a href="#H2_option_ResponseHeaders_block_Cookies">Cookies</a>
+      <ol>
+	<li> allow Cookies </li>
+	<li> block Cookies </li>
+	<li> If none of the options above matched : Cookies are allowed </li>
+      </ol>
+    </li>
+    <li>
+      <p><b>Content-Security-Policy</b></p>
+      If the URL is secure no CSP header is inserted. Otherwise:<br>
+      Settings in section <a href="#H1_option_ResponseHeaders_change">changing response headers</a> -- <a href="#H2_option_ResponseHeaders_change_CSP">Content-Security-Policy</a>
+      <ol>
+	<li> whitelist </li>
+	<li> blacklist </li>
+	<li> If none of the options above matched : no CSP header is inserted </li>
+      </ol>
+    </li>
+  </ul>
+  
+  <hr>
+  
+  <h1 id="H1_option_secure_urls" class="spOptionHeader1">secure URLs</h1>
+  
+  use newlines to separate the values, do not use spaces.<br>
+  All HTTP requests containing one of the following values anywhere in their URL are considered as "secure", i.e. the options blocked in "high security configuration" are allowed (scripts, referer, cookies, CSP whitelist).
+
+  <p>
+    <textarea name="enterURLSecure"   class="enter_secure"   rows="7" style="width:95%;font-size:100%" id="myOptionSecureURL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button1" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h1 id="H1_option_block_requests" class="spOptionHeader1">blocking web requests</h1>
+
+
+  <h2> URLs (all content types)</h2>
+  
+  <h3>allow URLs (all content types)</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All HTTP requests containing one of the following values anywhere in their URL are allowed:
+  <p>
+    <textarea name="enterURLAllow"   class="enter_allow"   rows="7" style="width:95%;font-size:100%" id="myOptionAllowAllURL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button1" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h3>block URLs (all content types)</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All HTTP requests containing one of the following values anywhere in their URL are blocked unless they are allowed:
+  <p>
+    <textarea name="enterURLblock"   class="enter_block"   rows="15" style="width:95%;font-size:100%" id="myOptionBlockAllURL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button1" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h2 id="H2_option_block_MAIN_FRAME" class="spOptionHeader2">MAIN_FRAME</h2>
+  <h3>allow MAIN_FRAME</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All HTTP requests of resource type MAIN_FRAME containing one of the following values anywhere in their URL are allowed:
+  <p>
+    <textarea name="enterURL_MAIN_FRAME_Allow"   class="enter_allow"   rows="7" style="width:95%;font-size:100%" id="myOptionAllow_main_frame_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button2" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+    <h3>block MAIN_FRAME</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All HTTP requests of resource type MAIN_FRAME containing one of the following values anywhere in their URL are blocked unless they are allowed:
+  <p>
+    <textarea name="enterURL_MAIN_FRAME_Block"   class="enter_block"   rows="15" style="width:95%;font-size:100%" id="myOptionBlock_main_frame_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button2" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h2 id="H2_option_block_SUB_FRAME" class="spOptionHeader2">SUB_FRAME</h2>
+  <h3>allow SUB_FRAME</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All HTTP requests of resource type SUB_FRAME containing one of the following values anywhere in their URL are allowed:
+  <p>
+    <textarea name="enterURL"   class="enter_allow"   rows="7" style="width:95%;font-size:100%" id="myOptionAllow_sub_frame_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button2" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+    <h3>block SUB_FRAME</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All HTTP requests of resource type SUB_FRAME containing one of the following values anywhere in their URL are blocked unless they are allowed:
+  <p>
+    <textarea name="enterURL"   class="enter_block"   rows="15" style="width:95%;font-size:100%" id="myOptionBlock_sub_frame_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button2" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+  
+  <h2 id="H2_option_block_FONT" class="spOptionHeader2">FONT (web fonts)</h2>
+  
+  <h3>allow FONT</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType FONT containing one of the following values anywhere in their URL are allowed:
+  <p>
+    <textarea name="enterFONT"     class="enter_allow" rows="7" style="width:95%;font-size:100%" id="myOptionAllow_font_URL">
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button7" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+  <h3>block FONT</h3>
+  use / to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType FONT containing one of the following values anywhere in their name are blocked unless they are allowed:<br>
+  note: an empty string will block all web fonts.
+  <p>
+    <input type="text" name="enter" class="enter_block" value="__DEFAULT_VALUE__" style="width:95%;font-size:100%" id="myOptionBlock_font_Name">
+  </p>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType FONT containing one of the following values anywhere in their URL are blocked unless they are allowed:
+  <p>
+    <textarea name="enterFONT"     class="enter_block" rows="15" style="width:95%;font-size:100%" id="myOptionBlock_font_URL">
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button7" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h2 id="H2_option_block_IMAGE" class="spOptionHeader2">IMAGE</h2>
+  
+  <h3>allow IMAGE</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All HTTP requests of resource type IMAGE containing one of the following values anywhere in their URL are allowed:
+  <p>
+    <textarea name="enterIMAGE" class="enter_allow"   rows="7" style="width:95%;font-size:100%" id="myOptionAllow_image_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button3" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+ 
+  <h3>block IMAGE</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All HTTP requests of resource type IMAGE containing one of the following values anywhere in their URL are blocked unless they are allowed:
+  <p>
+    <textarea name="enterIMAGE" class="enter_block"   rows="15" style="width:95%;font-size:100%" id="myOptionBlock_image_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button3" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h2 id="H2_option_block_IMAGESET" class="spOptionHeader2">IMAGESET</h2>
+  
+  <h3>allow IMAGESET</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All HTTP requests of resource type IMAGESET containing one of the following values anywhere in their URL are allowed:
+  <p>
+    <textarea name="enterIMAGE" class="enter_allow"   rows="7" style="width:95%;font-size:100%" id="myOptionAllow_imageset_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button4" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  <h3>block IMAGESET</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All HTTP requests of resource type IMAGESET containing one of the following values anywhere in their URL are blocked unless they are allowed:
+  <p>
+    <textarea name="enterIMAGE" class="enter_block"   rows="15" style="width:95%;font-size:100%" id="myOptionBlock_imageset_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button4" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+  <h2 id="H2_option_block_MEDIA" class="spOptionHeader2">MEDIA</h2>
+
+  <h3>allow MEDIA</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType MEDIA containing one of the following values somewhere in their URL are allowed:
+  <p>
+    <textarea name="enterMEDIA" class="enter_allow"   rows="7" style="width:95%;font-size:100%" id="myOptionAllow_media_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button8" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h3>block MEDIA</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType MEDIA containing one of the following values somewhere in their URL are blocked unless they are allowed:
+  <p>
+    <textarea name="enterMEDIA" class="enter_block"   rows="15" style="width:95%;font-size:100%" id="myOptionBlock_media_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button8" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h2 id="H2_option_block_SCRIPT" class="spOptionHeader2">SCRIPT</h2>
+  
+  <h3>allow SCRIPT</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All HTTP requests of resource type SCRIPT containing one of the following values anywhere in their URL are allowed:
+  <p>
+    <textarea name="enterSCRIPT" class="enter_allow"   rows="7" style="width:95%;font-size:100%" id="myOptionAllow_script_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button5" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  <h3>block SCRIPT</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All HTTP requests of resource type SCRIPT containing one of the following values anywhere in their URL are blocked unless they are allowed:
+  <p>
+    <textarea name="enterSCRIPT" class="enter_block"   rows="15" style="width:95%;font-size:100%" id="myOptionBlock_script_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button5" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h2 id="H2_option_block_STYLESHEET" class="spOptionHeader2">STYLESHEET (CSS style sheets)</h2>
+  
+  <h3>allow STYLESHEET</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All HTTP requests of resource type STYLESHEET containing one of the following values somewhere in their URL are allowed:
+  <p>
+    <textarea name="enterSTYLESHEET" class="enter_allow"   rows="7" style="width:95%;font-size:100%" id="myOptionAllow_stylesheet_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button6" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+  <h3>block STYLESHEET</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All HTTP requests of resource type STYLESHEET containing one of the following values somewhere in their URL are blocked unless they are allowed:
+  <p>
+    <textarea name="enterSTYLESHEET" class="enter_block"   rows="15" style="width:95%;font-size:100%" id="myOptionBlock_stylesheet_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button6" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+  
+  <h2 id="H2_option_block_XMLHTTPREQUEST" class="spOptionHeader2">XMLHTTPREQUEST</h2>
+  Requests sent by an XMLHttpRequest object or through the Fetch API.
+  <h3>allow XMLHTTPREQUEST</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType XMLHTTPREQUEST containing one of the following values somewhere in their URL are allowed:
+  <p>
+    <textarea name="enterXMLHTTPREQUEST" class="enter_allow"   rows="7" style="width:95%;font-size:100%" id="myOptionAllow_xmlhttprequest_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button9" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h3>block XMLHTTPREQUEST</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType XMLHTTPREQUEST containing one of the following values somewhere in their URL are blocked unless they are allowed:
+  <p>
+    <textarea name="enterXMLHTTPREQUEST" class="enter_block"   rows="15" style="width:95%;font-size:100%" id="myOptionBlock_xmlhttprequest_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button9" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+
+  <h2 id="H2_option_block_BEACON" class="spOptionHeader2">BEACON</h2>
+  Requests sent through the Beacon API.
+  <h3>allow BEACON</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType BEACON containing one of the following values somewhere in their URL are allowed:
+  <p>
+    <textarea name="enterBEACON" class="enter_allow"   rows="7" style="width:95%;font-size:100%" id="myOptionAllow_beacon_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button11" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  <h3>block BEACON</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType BEACON containing one of the following values somewhere in their URL are blocked unless they are allowed:
+  <p>
+    <textarea name="enterBEACON" class="enter_block"   rows="15" style="width:95%;font-size:100%" id="myOptionBlock_beacon_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button11" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+  <h2 id="H2_option_block_CSP_REPORT" class="spOptionHeader2">CSP_REPORT</h2>
+  Requests sent to the report-uri given in the Content-Security-Policy header, when an attempt to violate the policy is detected.
+  <h3>allow CSP_REPORT</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType CSP_REPORT containing one of the following values somewhere in their URL are allowed:
+  <p>
+    <textarea name="enterCSP_REPORT" class="enter_allow"   rows="7" style="width:95%;font-size:100%" id="myOptionAllow_csp_report_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button11" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  <h3>block CSP_REPORT</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType CSP_REPORT containing one of the following values somewhere in their URL are blocked unless they are allowed:
+  <p>
+    <textarea name="enterCSP_REPORT" class="enter_block"   rows="15" style="width:95%;font-size:100%" id="myOptionBlock_csp_report_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button11" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+  
+  <h2 id="H2_option_block_OBJECT" class="spOptionHeader2">OBJECT</h2>
+  Resources loaded by an &lt;object&gt; or &lt;embed&gt; element. Browsers that don't have a dedicated object_subrequest type, also label subsequent requests sent by the plugin as object.
+      <h3>allow OBJECT</h3>
+      use newlines to separate the values, do not use spaces.<br>
+      All webrequests of ResourceType OBJECT containing one of the following values somewhere in their URL are allowed:
+      <p>
+	<textarea name="enterOBJECT" class="enter_allow"   rows="7" style="width:95%;font-size:100%" id="myOptionAllow_object_URL" >
+	  __DEFAULT_VALUE__ 
+	</textarea>
+    <br>
+    <button id="save-button11" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  <h3>block OBJECT</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType OBJECT containing one of the following values somewhere in their URL are blocked unless they are allowed:
+  <p>
+    <textarea name="enterOBJECT" class="enter_block"   rows="15" style="width:95%;font-size:100%" id="myOptionBlock_object_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button11" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+  <h2 id="H2_option_block_OBJECT_SUBREQUEST" class="spOptionHeader2">OBJECT_SUBREQUEST</h2>
+  Requests sent by plugins.
+  <h3>allow OBJECT_SUBREQUEST</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType OBJECT_SUBREQUEST containing one of the following values somewhere in their URL are allowed:
+  <p>
+    <textarea name="enterOBJECT_SUBREQUEST" class="enter_allow"   rows="7" style="width:95%;font-size:100%" id="myOptionAllow_object_subrequest_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button10" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h3>block OBJECT_SUBREQUEST</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType OBJECT_SUBREQUEST containing one of the following values somewhere in their URL are blocked unless they are allowed:
+  <p>
+    <textarea name="enterOBJECT_SUBREQUEST" class="enter_block"   rows="15" style="width:95%;font-size:100%" id="myOptionBlock_object_subrequest_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button10" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+  
+  <h2 id="H2_option_block_PING" class="spOptionHeader2">PING</h2>
+  Requests sent to the URL given in a hyperlink's ping attribute, when the hyperlink is followed.
+  <h3>allow PING</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType PING containing one of the following values somewhere in their URL are allowed:
+  <p>
+    <textarea name="enterPING" class="enter_allow"   rows="7" style="width:95%;font-size:100%" id="myOptionAllow_ping_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button10" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h3>block PING</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType PING containing one of the following values somewhere in their URL are blocked unless they are allowed:
+  <p>
+    <textarea name="enterPING" class="enter_block"   rows="15" style="width:95%;font-size:100%" id="myOptionBlock_ping_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button10" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h2 id="H2_option_block_WEB_MANIFEST" class="spOptionHeader2">WEB_MANIFEST</h2>
+  Web App Manifests loaded for websites that can be installed to the homescreen.
+  <h3>allow WEB_MANIFEST</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType WEB_MANIFEST containing one of the following values somewhere in their URL are allowed:
+  <p>
+    <textarea name="enterWEB_MANIFEST" class="enter_allow"   rows="7" style="width:95%;font-size:100%" id="myOptionAllow_web_manifest_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button10" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h3>block WEB_MANIFEST</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType WEB_MANIFEST containing one of the following values somewhere in their URL are blocked unless they are allowed:
+  <p>
+    <textarea name="enterWEB_MANIFEST" class="enter_block"   rows="15" style="width:95%;font-size:100%" id="myOptionBlock_web_manifest_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button10" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h2 id="H2_option_block_WEBSOCKET" class="spOptionHeader2">WEBSOCKET</h2>
+  Requests initiating a connection to a server through the WebSocket API.
+  <h3>allow WEBSOCKET</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType WEBSOCKET containing one of the following values somewhere in their URL are allowed:
+  <p>
+    <textarea name="enterWEBSOCKET" class="enter_allow"   rows="7" style="width:95%;font-size:100%" id="myOptionAllow_websocket_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button10" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h3>block WEBSOCKET</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType WEBSOCKET containing one of the following values somewhere in their URL are blocked unless they are allowed:
+  <p>
+    <textarea name="enterWEBSOCKET" class="enter_block"   rows="15" style="width:95%;font-size:100%" id="myOptionBlock_websocket_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button10" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h2 id="H2_option_block_XBL" class="spOptionHeader2">XBL</h2>
+  XBL bindings loaded to extend the behavior of elements in a document.
+
+  <h3>allow XBL</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType XBL containing one of the following values somewhere in their URL are allowed:
+  <p>
+    <textarea name="enterXBL" class="enter_allow"   rows="7" style="width:95%;font-size:100%" id="myOptionAllow_xbl_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button10" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h3>block XBL</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType XBL containing one of the following values somewhere in their URL are blocked unless they are allowed:
+  <p>
+    <textarea name="enterXBL" class="enter_block"   rows="15" style="width:95%;font-size:100%" id="myOptionBlock_xbl_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button10" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+
+  <h2 id="H2_option_block_XML_DTD" class="spOptionHeader2">XML_DTD</h2>
+  DTDs loaded for an XML document.
+  <h3>allow XML_DTD</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType XML_DTD containing one of the following values somewhere in their URL are allowed:
+  <p>
+    <textarea name="enterXML_DTD" class="enter_allow"   rows="7" style="width:95%;font-size:100%" id="myOptionAllow_xml_dtd_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button10" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h3>block XML_DTD</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType XML_DTD containing one of the following values somewhere in their URL are blocked unless they are allowed:
+  <p>
+    <textarea name="enterXML_DTD" class="enter_block"   rows="15" style="width:95%;font-size:100%" id="myOptionBlock_xml_dtd_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button10" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h2 id="H2_option_block_XSLT" class="spOptionHeader2">XSLT</h2>
+  XSLT stylesheets loaded for transforming an XML document. Browsers that don't have a dedicated beacon type, also label requests sent through the Beacon API as ping.
+
+  <h3>allow XSLT</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType XSLT containing one of the following values somewhere in their URL are allowed:
+  <p>
+    <textarea name="enterXSLT" class="enter_allow"   rows="7" style="width:95%;font-size:100%" id="myOptionAllow_xslt_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button10" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h3>block XSLT</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType XSLT containing one of the following values somewhere in their URL are blocked unless they are allowed:
+  <p>
+    <textarea name="enterXSLT" class="enter_block"   rows="15" style="width:95%;font-size:100%" id="myOptionBlock_xslt_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button10" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h2 id="H2_option_block_OTHER" class="spOptionHeader2">OTHER</h2>
+  Resources that aren't covered by any other available type.
+  <h3>allow OTHER</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType OTHER containing one of the following values somewhere in their URL are allowed:
+  <p>
+    <textarea name="enterOTHER" class="enter_allow"   rows="7" style="width:95%;font-size:100%" id="myOptionAllow_other_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button11" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+  <h3>block OTHER</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  All webrequests of ResourceType OTHER containing one of the following values somewhere in their URL are blocked unless they are allowed:
+  <p>
+    <textarea name="enterOTHER" class="enter_block"   rows="15" style="width:95%;font-size:100%" id="myOptionBlock_other_URL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button11" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <hr>
+  <h1 id="H1_option_RequestHeaders_block" class="spOptionHeader1">blocking request headers</h1>
+
+  <h2 id="H2_option_RequestHeaders_block_Referer">Referer</h2>
+
+  <h3>allow Referer</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  The referer is <b>not</b> deleted from the request headers for all web sites containing one of the following values somewhere in their URL:
+  <p>
+    <textarea name="enterREFERER" class="enter_allow" rows="7" style="width:95%;font-size:100%" id="myOptionAllowRefererURL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button12" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+  <h3>block Referer</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  The referer is deleted from the request headers for all web sites containing one of the following values somewhere in their URL unless they are allowed:
+  <p>
+    <textarea name="enterREFERER" class="enter_block" rows="15" style="width:95%;font-size:100%" id="myOptionBlockRefererURL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button12" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h2 id="H2_option_RequestHeaders_block_Cookies">Cookies</h2>
+  
+  <h3>allow Cookies</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  Cookies are <b>not</b> deleted from the request headers for all web sites containing one of the following values somewhere in their URL:
+  <p>
+    <textarea name="enterCOOKIES" class="enter_allow" rows="7" style="width:95%;font-size:100%" id="myOptionAllowCookiesURL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button13" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h3>block Cookies</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  Cookies are deleted from the request headers for all web sites containing one of the following values somewhere in their URL unless they are allowed:
+  <p>
+    <textarea name="enterCOOKIES" class="enter_block" rows="15" style="width:95%;font-size:100%" id="myOptionBlockCookiesURL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button13" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+  <hr>
+  <h1 id="H1_option_RequestHeaders_change" class="spOptionHeader1">changing request headers</h1>
+
+  <h2 id="H2_option_RequestHeaders_change_UserAgent">User Agent</h2>
+  use newlines to separate the values, do not use spaces.<br>
+  A different User Agent will be sent to all web sites containing one of the following values somewhere in their URL:
+  <p>
+    <textarea name="enterUSERAGENTURLS" class="enter_block" rows="15" style="width:95%;font-size:100%" id="myOptionChangeUserAgentURL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button14" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+  the following string will be sent as User Agent instead of the default one:
+  <p>
+  <input type="text" name="enterUserAgent" class="enter_block" value="__DEFAULT_VALUE__" style="width:95%;font-size:100%" id="myOptionChangeUserAgent"/>
+  </p>
+
+  the following text box contains standard values for possible User Agent strings:
+  <p>
+    <textarea name="enterUserAgentStandardValues" readonly="readonly" class="enter_none" rows="15" style="width:95%;font-size:100%" id="myOptionChangeUserAgentStandardValues" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+  </p>
+  the following text box contains your saved values for possible User Agent strings:
+  <p>
+    <textarea name="enterUserAgentSavedValues" class="enter_general" rows="15" style="width:95%;font-size:100%" id="myOptionChangeUserAgentSavedValues" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button15" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+  <hr>
+  <h1 id="H1_option_ResponseHeaders_block" class="spOptionHeader1">blocking response headers</h1>
+  
+  <h2 id="H2_option_ResponseHeaders_block_Cookies">Cookies</h2>
+
+  <h3>allow Cookies</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  Cookies are <b>not</b> deleted from the response headers for all web sites containing one of the following values somewhere in their URL:
+  <p>
+    <textarea name="enterCOOKIES" class="enter_allow" rows="7" style="width:95%;font-size:100%" id="myOptionAllowCookiesResponseURL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button13" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h3>block Cookies</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  Cookies are deleted from the response headers for all web sites containing one of the following values somewhere in their URL unless they are allowed:
+  <p>
+    <textarea name="enterCOOKIES" class="enter_block" rows="15" style="width:95%;font-size:100%" id="myOptionBlockCookiesResponseURL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button13" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h1 id="H1_option_ResponseHeaders_change" class="spOptionHeader1">changing response headers</h1>
+  
+  <h2 id="H2_option_ResponseHeaders_change_CSP">Content-Security-Policy Header</h2>
+  <h3>whitelist</h3>
+  use newlines to separate the values, do not use spaces.<br>
+  No CSP header will be added to the response headers for all requests of type MAIN_FRAME or SUB_FRAME matching one of the URL strings.<br>
+  <p>
+    <textarea name="enterCSPHeadersWhite"   class="enter_allow"   rows="15" style="width:95%;font-size:100%" id="myOptionNoCSPHeaderURL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button1" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <h3>blacklist</h3>
+  Use newlines to separate pairs of values (URL string / CSP header string), the first space separates the values.<br>
+  A CSP header will be added to the response headers for all requests of type MAIN_FRAME or SUB_FRAME matching one of the URL strings
+  unless the URL matches one of the strings in the whitelist.<br>
+  More information about blocking content using CSP can be found here:<br>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP" target="_blank">https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP</a><br>
+  If you want the browser not to execute SCRIPT by default, use the following entry for blocking SCRIPT in all web pages:<br>
+  <code>/ script-src 'none';report-uri https://spwebfilter.invalid/;report-to https://spwebfilter.invalid/</code><br>
+  and use the white list for exceptions. Please expect that the browser will <b>not</b> evaluate <code>&lt;noscript&gt;</code>
+  sections of the web page as this setting does not disable Javascript in the browser settings.
+  <p>
+    <textarea name="enterCSPHeadersBlack"   class="enter_block"   rows="15" style="width:95%;font-size:100%" id="myOptionSetCSPHeaderURL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button1" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+  <hr>
+  <h1 id="H1_Option_redirect" class="spOptionHeader1">redirecting HTTP requests</h1>
+ 
+  <h2>Replace Strings</h2>
+  Use newlines to separate pairs of values (old value / new value), use one space to separate values.<br>
+  Redirecting of SCRIPT, FONT, STYLESHEET etc might not work.<br>
+  The first match is executed, all other pairs are ignored.<br>
+  The redirected URL will be checked against the rules. Do not create infinite loops.<br>
+  <p>
+    <textarea name="enterRedirectStrings"   class="enter_redirect"   rows="15" style="width:95%;font-size:100%" id="myOptionRedirectAllURL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button1" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+  <hr>
+  <h1 id="H1_option_display_information" class="spOptionHeader1">displaying information</h1>
+  
+  <h2 id="H2_option_display_information_requests">web requests</h2>
+  use newlines to separate the values, do not use spaces.<br>
+  All web requests containing one of the following values anywhere in their URL are <b>not</b> shown in the console:
+  <p>
+    <textarea name="enterURLsuppressed"   class="enter_block"   rows="15" style="width:95%;font-size:100%" id="myOptionSuppressAllURL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button1" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+  <h2 id="H2_option_display_information_internal_requests">internal requests</h2>
+  use keywords "yes", "short" or "no".<br>
+  Specifies how internal requests of type <code>data:</code> are shown. These can be caused by base64 encoded data embedded in HTML or stylesheets.
+  <p>
+    <input type="text" name="enter" class="enter_general" value="__DEFAULT_VALUE__" style="width:95%;font-size:100%" id="myOptionShowDataRequest"/>
+    <br>
+    <button id="save-button18" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+  <h2 id="H2_option_display_information_formdata">form data</h2>
+  use an integer number.<br>
+  Specifies how many characters of form data are shown. 
+  <p>
+    <input type="text" name="enter" class="enter_general" value="__DEFAULT_VALUE__" style="width:95%;font-size:100%" id="myOptionMaxFormBytes"/>
+    <br>
+    <button id="save-button18" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+  use newlines to separate the values, do not use spaces.<br>
+  Form data for all web requests containing one of the following values anywhere in their URL are shown in the console:
+  <p>
+    <textarea name="enterShowFormDataURL"   class="enter_allow"   rows="15" style="width:95%;font-size:100%" id="myOptionShowFormDataURL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button1" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+  <h2 id="H2_option_display_information_headers">HTTP Headers</h2>
+
+  use newlines to separate the values, do not use spaces.<br>
+  For all HTTP requests containing one of the following values anywhere in their URL no header information is printed.
+   <p>
+    <textarea name="enterNoHeaderURL"   class="enter_block"   rows="7" style="width:95%;font-size:100%" id="myOptionNoHeaderURL" >
+      __DEFAULT_VALUE__ 
+    </textarea>
+    <br>
+    <button id="save-button1" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+   use an integer number.<br>
+   Specifies how many characters of headers are shown.
+  <p>
+    <input type="text" name="enter" class="enter_general" value="__DEFAULT_VALUE__" style="width:95%;font-size:100%" id="myOptionMaxHeaderBytes"/>
+    <br>
+    <button id="save-button18" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+
+
+
+   
+   
+  use / to separate the values, do not use spaces.<br>
+  Headers containing one of the following values anywhere in their name are displayed unless the URL is blocked:<br>
+  note: an empty string (i.e. /) shows all request headers.
+  <p>
+    <b>Request Headers</b><br>
+    Standard values are: cookie/referer<br>
+    <input type="text" name="enter" class="enter_general" value="__DEFAULT_VALUE__" style="width:95%;font-size:100%" id="myOptionShowRequestHeaders">
+    <br>
+    <br>   
+    <b>Response Headers</b><br>
+    Standard values are: cookie/server/content-security/content-type/content-length/last-modified<br>
+    <input type="text" name="enter" class="enter_general" value="__DEFAULT_VALUE__" style="width:95%;font-size:100%"  id="myOptionShowResponseHeaders">
+    <br>
+    <button id="save-button16" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+
+  <h2 id="H2_option_display_information_textformat">text in the console</h2>
+  use strings that are valid values of CSS rules.
+  <p> 
+    font-family <br>
+    <input type="text" name="enter" class="enter_general" value="__DEFAULT_VALUE__" style="width:95%;font-size:100%" id="myOptionFontFamily"/>
+    <br>
+    font-size  <br>
+    <input type="text" name="enter" class="enter_general" value="__DEFAULT_VALUE__" style="width:95%;font-size:100%" id="myOptionFontSize"/>
+    <br>
+    <button id="save-button17" class="mySaveButton" style="font-size:100%"> Save Values </button>
+  </p>
+  
+  <hr>
+  <h1 id="H1_general_information" class="spOptionHeader1">General information</h1>
+  <div id="spGeneralInformation">
+  </div>
+
+  <hr>
+  <h1 id="H1_export-import" class="spOptionHeader1">Export or import configuration</h1>
+  <div id="Special_Notes_for_Chrome">
+    <p>
+      Export options to file:<br>
+      <button id="export-button01" class="myExportButton" style="font-size:100%"> Download </button>
+      </p>
+  </div>
+  <div id="Special_Notes_for_Firefox">
+    <p>
+      Display settings on screen for export by copy:<br>
+      <button id="export-button01" class="myExportButton" style="font-size:100%"> Click </button>
+      </p>
+  </div>
+
+  <div>
+    <p>
+      Import saved options from file:<br>
+      <input type="file" id="import-button01" name="myfile">
+      <span id="import-result"> --- result of import : </span><br>
+    <p>
+      
+  </div>
+  <hr>
+  <div id="exported-settings-as-json">
+  </div>
+    <hr>
+  <script type="text/javascript" src="spFilterWebContent.options.js"></script>
+  
+</body>
+</html>
+
+<!-- END OF $Id: spFilterWebContent.options.html,v 1.46 2022/07/30 06:35:43 user Exp $ -->

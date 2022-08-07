@@ -1,0 +1,376 @@
+/* $Id: spFilterWebContent.live.css,v 1.19 2018/01/20 11:15:33 user Exp $ */
+
+
+/* Standardeinstellung fuer den Text werden im spFilterWebContent.live.js vorgenommen */
+
+/*
+ * body {
+ *    font-family: sans-serif;
+ *    font-size: small;
+ * }
+ */
+
+th, td {
+    padding: 15px;
+}
+.spExplanation {
+    color: black;
+
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-left: 5px solid black;
+    border-right: 5px solid black;
+
+    background-color: LightGrey ;
+}
+
+.spStatusReport {
+    color: green;
+
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-left: 5px solid black;
+    border-right: 5px solid black;
+
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+
+    background-color: LightGrey ;
+}
+
+
+/* Nachrichten zu ALL_URLs */
+.spMessageURL {
+   color: black;
+}
+ .spMessageURLBlocked {
+   color: orange;
+}
+ .spMessageURLAllowed {
+   color: wheat;
+}
+
+
+/* Nachrichten zu BEACON */
+.spMessageBEACON {
+   color: black;
+}
+.spMessageBEACONBlocked  {
+   color: orange;
+}
+.spMessageBEACONAllowed  {
+   color: wheat;
+}
+.spMessageBEACON_short  {
+   color: grey;
+}
+
+/* Nachrichten zu CSP_REPORT */
+.spMessageCSP_REPORT {
+   color: black;
+}
+.spMessageCSP_REPORTBlocked  {
+   color: orange;
+}
+.spMessageCSP_REPORTAllowed  {
+   color: wheat;
+}
+.spMessageCSP_REPORT_short  {
+   color: grey;
+}
+
+/* Nachrichten zu FONT */
+.spMessageFONT {
+   color: black;
+}
+.spMessageFONTBlocked  {
+   color: orange;
+}
+.spMessageFONTAllowed  {
+   color: wheat;
+}
+.spMessageFONT_short  {
+   color: grey;
+}
+
+/* Nachrichten zu IMAGE */
+.spMessageIMAGE {
+   color: black;
+}
+.spMessageIMAGEBlocked {
+   color: orange;
+}
+.spMessageIMAGEAllowed {
+   color: wheat;
+}
+.spMessageIMAGE_short {
+   color: grey;
+}
+
+/* Nachrichten zu IMAGESET */
+.spMessageIMAGESET {
+   color: black;
+}
+.spMessageIMAGESETBlocked {
+   color: orange;
+}
+.spMessageIMAGESETAllowed {
+   color: wheat;
+}
+.spMessageIMAGESET_short {
+   color: grey;
+}
+
+/* Nachrichten zu MAIN_FRAME */
+.spMessageMAIN_FRAME {
+   color: black;
+}
+.spMessageMAIN_FRAMEBlocked {
+   color: orange;
+}
+.spMessageMAIN_FRAMEAllowed {
+   color: wheat;
+}
+.spMessageMAIN_FRAME_short {
+   color: grey;
+}
+
+/* Nachrichten zu MEDIA */
+.spMessageMEDIA {
+   color: black;
+}
+.spMessageMEDIABlocked  {
+   color: orange;
+}
+.spMessageMEDIAAllowed  {
+   color: wheat;
+}
+.spMessageMEDIA_short  {
+   color: grey;
+}
+
+/* Nachrichten zu OBJECT */
+.spMessageOBJECT {
+   color: black;
+}
+.spMessageOBJECTBlocked  {
+   color: orange;
+}
+.spMessageOBJECTAllowed  {
+   color: wheat;
+}
+.spMessageOBJECT_short  {
+   color: grey;
+}
+
+/* Nachrichten zu OBJECT_SUBREQUEST */
+.spMessageOBJECT_SUBREQUEST {
+   color: black;
+}
+.spMessageOBJECT_SUBREQUESTBlocked  {
+   color: orange;
+}
+.spMessageOBJECT_SUBREQUESTAllowed  {
+   color: wheat;
+}
+.spMessageOBJECT_SUBREQUEST_short  {
+   color: grey;
+}
+
+/* Nachrichten zu PING */
+.spMessagePING {
+   color: black;
+}
+.spMessagePINGBlocked  {
+   color: orange;
+}
+.spMessagePINGAllowed  {
+   color: wheat;
+}
+.spMessagePING_short  {
+   color: grey;
+}
+
+/* Nachrichten zu SCRIPT */
+.spMessageSCRIPT {
+   color: black;
+}
+.spMessageSCRIPTBlocked {
+   color: orange;
+}
+.spMessageSCRIPTAllowed {
+   color: wheat;
+}
+.spMessageSCRIPT_short {
+   color: grey;
+}
+
+
+/* Nachrichten zu STYLESHEET */
+.spMessageSTYLESHEET {
+   color: black;
+}
+.spMessageSTYLESHEETBlocked {
+   color: orange;
+}
+.spMessageSTYLESHEETWheat {
+   color: wheat;
+}
+.spMessageSTYLESHEET_short {
+   color: grey;
+}
+
+/* Nachrichten zu SUB_FRAME */
+.spMessageSUB_FRAME {
+   color: black;
+}
+.spMessageSUB_FRAMEBlocked {
+   color: orange;
+}
+.spMessageSUB_FRAMEAllowed {
+   color: wheat;
+}
+.spMessageSUB_FRAME_short {
+   color: grey;
+}
+
+/* Nachrichten zu WEB_MANIFEST */
+.spMessageWEB_MANIFEST {
+   color: black;
+}
+.spMessageWEB_MANIFESTBlocked {
+   color: orange;
+}
+.spMessageWEB_MANIFESTAllowed {
+   color: wheat;
+}
+.spMessageWEB_MANIFEST_short {
+   color: grey;
+}
+
+/* Nachrichten zu WEBSOCKET */
+.spMessageWEBSOCKET {
+   color: black;
+}
+.spMessageWEBSOCKETBlocked {
+   color: orange;
+}
+.spMessageWEBSOCKETAllowed {
+   color: wheat;
+}
+.spMessageWEBSOCKET_short {
+   color: grey;
+}
+
+/* Nachrichten zu XBL */
+.spMessageXBL {
+   color: black;
+}
+.spMessageXBLBlocked {
+   color: orange;
+}
+.spMessageXBLAllowed {
+   color: wheat;
+}
+.spMessageXBL_short {
+   color: grey;
+}
+
+/* Nachrichten zu XML_DTD */
+.spMessageXML_DTD {
+   color: black;
+}
+.spMessageXML_DTDBlocked {
+   color: orange;
+}
+.spMessageXML_DTDAllowed {
+   color: wheat;
+}
+.spMessageXML_DTD_short {
+   color: grey;
+}
+
+/* Nachrichten zu XMLHTTPREQUEST */
+.spMessageXMLHTTPREQUEST {
+   color: black;
+}
+.spMessageXMLHTTPREQUESTBlocked  {
+   color: orange;
+}
+.spMessageXMLHTTPREQUESTAllowed  {
+   color: wheat;
+}
+.spMessageXMLHTTPREQUEST_short  {
+   color: grey;
+}
+
+/* Nachrichten zu XSLT */
+.spMessageXSLT {
+   color: black;
+}
+.spMessageXSLTBlocked  {
+   color: orange;
+}
+.spMessageXSLTAllowed  {
+   color: wheat;
+}
+.spMessageXSLT_short  {
+   color: grey;
+}
+
+/* Nachrichten zu OTHER */
+.spMessageOTHER {
+   color: black;
+}
+.spMessageOTHERBlocked  {
+   color: orange;
+}
+.spMessageOTHERAllowed  {
+   color: wheat;
+}
+.spMessageOTHER_short  {
+   color: grey;
+}
+
+
+/* Nachrichten zu REFERER */
+.spMessageREFERERBlocked  {
+   color: orange;
+}
+
+/* Nachrichten zu COOKIES */
+.spMessageCOOKIESBlocked  {
+   color: orange;
+}
+
+/* allgemeine Einstellungen */
+.spMessage {
+   margin: 10px;
+}
+.spMessageRequest {
+   color: black;
+}
+.spMessageRedirect {
+   color: orange;
+}
+.spMessageRequestHeaders {
+   color: black;
+}
+.spMessageResultOK {
+   color: green;
+}
+.spMessageResultNOK {
+   color: blue;
+}
+.spMessageResultError {
+   color: red;
+}
+.spMessageAuthRequired {
+   color: orange;
+}
+
+.spRequestBody {
+       color: grey;
+}

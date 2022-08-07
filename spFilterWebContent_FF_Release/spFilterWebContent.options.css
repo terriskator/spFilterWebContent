@@ -1,0 +1,54 @@
+/* $Id: spFilterWebContent.options.css,v 1.9 2019/09/19 10:33:50 user Exp $ */
+
+.spMessageOptionsAlreadyActive {
+    
+    color: red;
+    font-weight: bold;
+    background-color: LightGrey;
+
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-left: 5px solid black;
+    border-right: 5px solid black;
+
+    padding-top: 10px;
+    padding-bottom: 10px;    
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.spOptionHeader1 {
+    border-width: 1px 1px;
+    border-style: solid;
+    border-color: black;
+    background-color: lightgrey;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.enter_secure {
+    background-color: #F0FFF0;
+}
+
+.enter_allow {
+    background-color: #F0FFF0;
+}
+
+.enter_block {
+    background-color: #FFF0F0;
+}
+
+.enter_none {
+    background-color: #FFFFFF;
+}
+
+.enter_redirect {
+    background-color: #F0F0FF;
+}
+
+.enter_general {
+    background-color: #EFEFEF;
+}
